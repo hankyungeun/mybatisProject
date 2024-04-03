@@ -9,6 +9,8 @@
 <body>
 	<%--common/menubar.jsp 이 페이지를 현재 페이지에 포함되도록 --%>
 	<jsp:include page="common/menubar.jsp"/>
-	메인페이지
+	<div class="outer">
+		<div class="title">메인페이지</h1>
+	</div>
 </body>
 </html>

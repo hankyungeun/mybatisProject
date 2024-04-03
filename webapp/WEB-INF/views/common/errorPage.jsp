@@ -8,6 +8,8 @@
 </head>
 <body>
 	<jsp:include page="menubar.jsp"/>
-	<div class="title">${errorMsg }</div>
+	<div class="outer">
+		<div class="title">${errorMsg }</div>
+	</div>
 </body>
 </html>
