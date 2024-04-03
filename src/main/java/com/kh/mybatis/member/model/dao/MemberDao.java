@@ -14,4 +14,11 @@ public class MemberDao {
 		int result = sqlSession.insert("memberMapper.insertMember", m);
 		return result;
 	}
+	
+	public Member loginMember(SqlSession sqlSession, Member m) {
+		Member loginUser = sqlSession.selectOne("memberMapper.loginMember", m);
+		
+		// selectOne : 조회된 결과가 없을 경우 null 반환
+		return loginUser;
+	}
 }
