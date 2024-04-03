@@ -12,26 +12,21 @@
 <link href="https://fonts.googleapis.com/css2?family=Single+Day&display=swap" rel="stylesheet">
 <style>
 	h1{ padding:50px 0; margin:0;
-	text-align: center; color:#f2aabc; font-family: "Single Day", cursive;  font-weight: 700; font-size:48px;}
-	tr, td, input, button{font-family: "Single Day", cursive; font-size : 16px; color:#6b6b6b}
-	.header {
-	    background-image: url('https://blog.kakaocdn.net/dn/bGWjD9/btsGl2hMKqR/lvKFuw383f7lBhrrUVegY0/img.gif');
-	    background-repeat: repeat; 
+		text-align: center; color:#f2aabc; font-family: "Single Day", cursive;  font-weight: 700; font-size:48px;
 	}
+	tr, td, input, button{font-family: "Single Day", cursive; font-size : 16px; color:#6b6b6b}
+	.header { background-image: url('https://blog.kakaocdn.net/dn/bGWjD9/btsGl2hMKqR/lvKFuw383f7lBhrrUVegY0/img.gif'); background-repeat: repeat; }
 	.login-area a{
 		color : #6b6b6b;
 		text-decoration: none;
 		font-size : 16px;
 		font-family: "Single Day", cursive;
 	}
-	.nav-area{
-		background:#ffd9e5; color:white; height:50px;
-	}
+	.nav-area{ background:#ffd9e5; color:white; height:50px; }
 	.menu{display: table-cell; width: 250px; height: 50px;
 		font-family: "Single Day", cursive; 
 		vertical-align:middle; font-size:26px; font-weight:500;}
 	.menu:hover{background:#ffccdc; cursor:pointer;}
-	/*공통적으로 사용되는 css*/
 	.outer{
 		text-align: center;
 		width: 100%;
@@ -43,9 +38,6 @@
 	.title{
 		margin-bottom:20px;
 		color: #f2aabc; font-size: 35px; font-family: "Single Day", cursive;  font-weight: 400;
-	}
-	button{
-		font-weight:bold;
 	}
 </style>
 </head>
