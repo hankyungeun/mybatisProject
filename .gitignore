@@ -120,5 +120,6 @@ $RECYCLE.BIN/
 *.lnk
 
 lib
+classes
 
 # End of https://www.toptal.com/developers/gitignore/api/windows,eclipse,java
