@@ -11,10 +11,13 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Single+Day&display=swap" rel="stylesheet">
 <style>
-	h1{ padding:50px 0; margin:0;
-		text-align: center; color:#f2aabc; font-family: "Single Day", cursive;  font-weight: 700; font-size:48px;
+	*{
+		font-family: "Single Day", cursive
 	}
-	tr, td, input, button{font-family: "Single Day", cursive; font-size : 16px; color:#6b6b6b}
+	h1{ padding:50px 0; margin:0;
+		text-align: center; color:#f2aabc;  font-weight: 700; font-size:48px;
+	}
+	tr, td, input, button{font-size : 16px; color:#6b6b6b}
 	.header { background-image: url('https://blog.kakaocdn.net/dn/bGWjD9/btsGl2hMKqR/lvKFuw383f7lBhrrUVegY0/img.gif'); background-repeat: repeat; }
 	.login-area a{
 		color : #6b6b6b;
@@ -28,7 +31,8 @@
 		vertical-align:middle; font-size:26px; font-weight:500;}
 	.menu:hover{background:#ffccdc; cursor:pointer;}
 	.outer{
-		text-align: center;
+		display: grid;
+		place-items: center; 
 		width: 100%;
 		background: #fff3f6;
 		color: white;
@@ -86,7 +90,7 @@
 		<div class="nav-area" align="center">
 			<div class="menu">HOME</div>
 			<div class="menu">공지사항</div>
-			<div class="menu">게시판</div>
+			<div class="menu" onclick="location.href='list.bo?cpage=1'">게시판</div>
 			<div class="menu">ETC</div>
 		</div>
 	</div>

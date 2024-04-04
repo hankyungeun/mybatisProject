@@ -23,6 +23,7 @@
 <!-- 			type: 전체클래스명 -->
 <!-- 			alias: 별칭 -->
 		<typeAlias alias="Member" type="com.kh.mybatis.member.model.vo.Member"/>
+		<typeAlias alias="Board" type="com.kh.mybatis.board.model.vo.Board"/>
 	</typeAliases>
 	
 	<!-- * environment : mybatis에서 연동할 DB정보를 작성하는 영역 -->
@@ -57,5 +58,6 @@
 	<!-- * mapper : 실행할 sql문을 저장한 mapper 파일들을 등록하는 영억  -->
 	<mappers>
 		<mapper resource="/mapper/member-mapper.xml" />
+		<mapper resource="/mapper/board-mapper.xml" />
 	</mappers>
 </configuration>
