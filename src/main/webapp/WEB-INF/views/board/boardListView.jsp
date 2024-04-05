@@ -34,6 +34,27 @@
 		color: #6b6b6b;
 		font-size:18px;
 	}
+	.selectOption{
+		text-align: center;
+		width:70px; height: 34px;
+		background-color : #fff7e4; color : #6b6b6b;
+		border: 2px solid #ffc9d7;
+		margin-right: 7px;
+		font-size:16px;
+	}
+	.searchBox{
+		width: 200px; height: 28px;
+		color : #6b6b6b;
+		background-color : #fff7e4;
+		border: 2px dashed #ffc9d7;
+		margin-right: 3px;
+		font-size:16px;
+	}
+	.searchButton{
+		height: 34px;
+		width: 45px;
+	}
+	
 </style>
 </head>
 <body>
@@ -41,7 +62,18 @@
 	<div class="outer">
 		<br>
 		<div class="title">게시판</div>
-		<div id="searhc-area"></div>
+		<div id="searhc-area">
+			<form action="search.bo" method="get">
+				<input type="hidden" name="cpage" value="1" />
+				<select class="selectOption" name="condition">
+					<option value="writer">작성자</option>
+					<option value="title">제목</option>
+					<option value="content">내용</option>
+				</select>
+				<input type="text" class="searchBox" name="keyword">
+				<button type="submit" class="searchButton">검색</button>
+			</form>
+		</div>
 		<br>
 		<table id="list-area">
 			<thead>
@@ -57,7 +89,7 @@
 				<c:forEach var="board" items="${list}">
 				<tr>
 					<td>${board.boardNo }</td>
-					<td class="td-title"><a href="detail.bo?bno=${b.boardNo }">${board.boardTitle }</a></td>
+					<td class="td-title"><a href="detail.bo?bno=${board.boardNo}">${board.boardTitle }</a></td>
 					<td>${board.boardWriter }</td>
 					<td>${board.count }</td>
 					<td>${board.createDate }</td>

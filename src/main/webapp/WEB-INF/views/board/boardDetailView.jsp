@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,33 +10,32 @@
 <body>
 	<jsp:include page="../common/menubar.jsp"/>
 	<div class="outer" align="center">
-		<br>
-		<h1>게시판 상세조회</h1>
+		<div class="title">게시판 상세조회</div>
 		<br>
 		<table border="1">
 			<tr>
 				<td width="100">글번호</td>
-				<td width="500">@@</td>
+				<td width="500">${board.boardNo }</td>
 			</tr>
 			<tr>
 				<td>제목</td>
-				<td>@@@@</td>
+				<td>${board.boardTitle}</td>
 			</tr>
 			<tr>
 				<td>작성자</td>
-				<td>@@@@</td>
+				<td>${board.boardWriter }</td>
 			</tr>
 			<tr>
 				<td>조회수</td>
-				<td>@@@@</td>
+				<td>${board.count }</td>
 			</tr>
 			<tr>
 				<td>작성일</td>
-				<td>@@@@-@@-@@</td>
+				<td>${board.createDate }</td>
 			</tr>
 			<tr>
 				<td>내용</td>
-				<td height="100">@@@@</td>
+				<td height="100">${board.boardContent }</td>
 			</tr>
 		</table>
 		<br>
@@ -54,11 +54,13 @@
 				<td colspan="3"><b>댓글(@@)</b></td>
 			</tr>
 			<%-- 댓글 목록 --%>
-			<tr>
-				<td>@@@@</td>
-				<td>@@@@@!!!###</td>
-				<td>@@@@-@@-@@</td>
-			</tr>
+			<c:forEach var="reply" items="${list}">
+				<tr>
+					<td>${reply.replyWriter }</td>
+					<td>${reply.replyContent }</td>
+					<td>${reply.createDate }</td>
+				</tr>
+			</c:forEach>
 		</table>
 		<br><br>
 	</div>
