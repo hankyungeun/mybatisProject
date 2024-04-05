@@ -9,10 +9,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.kh.mybatis.board.model.vo.Board;
+import com.kh.mybatis.board.model.vo.PageInfo;
 import com.kh.mybatis.board.service.BoardServiceImpl;
+import com.kh.mybatis.template.Pagination;
 
 /**
- * Servlet implementation class BoardListController
+ * Servlet implementation class BoardListsController
  */
 @WebServlet("/list.bo")
 public class BoardListController extends HttpServlet {
@@ -30,9 +33,20 @@ public class BoardListController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int boardNo = Integer.parseInt(request.getParameter("bno"));
+BoardServiceImpl boardServiceImpl = new BoardServiceImpl();
+		// listCount(전체 게시글 개수) : DB에 저장된 데이터의 개수를 조회
+		int listCount = boardServiceImpl.selectListCount();
+		// currentPage(현재 페이지) : 요청 시 전달된 값에서 조회(사용자 요청)
+		int currentPage = Integer.parseInt(request.getParameter("cpage"));
 		
-		BoardServiceImpl bService = new BoardServiceImpl();
+		PageInfo pi = Pagination.getPageInfo(listCount, currentPage, 10, 5);
+		
+		ArrayList<Board> list = boardServiceImpl.slectList(pi);
+		
+		request.setAttribute("pi", pi);
+		request.setAttribute("list", list);
+		
+		request.getRequestDispatcher("WEB-INF/views/board/boardListView.jsp").forward(request,response);
 	}
 
 	/**

@@ -10,14 +10,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.kh.mybatis.board.model.vo.Board;
-import com.kh.mybatis.board.model.vo.PageInfo;
+import com.kh.mybatis.board.model.vo.Reply;
 import com.kh.mybatis.board.service.BoardServiceImpl;
-import com.kh.mybatis.template.Pagination;
 
-@WebServlet("/detial.bo")
-public class BoardDetailController {
+/**
+ * Servlet implementation class BoardDetailController
+ */
+@WebServlet("/detail.bo")
+public class BoardDetailController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-    
+       
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -30,21 +32,23 @@ public class BoardDetailController {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		BoardServiceImpl boardServiceImpl = new BoardServiceImpl();
+		int boardNo = Integer.parseInt(request.getParameter("bno"));
+		System.out.println(boardNo);
+		BoardServiceImpl bService = new BoardServiceImpl();
 		
-		// listCount(전체 게시글 개수) : DB에 저장된 데이터의 개수를 조회
-		int listCount = boardServiceImpl.selectListCount();
-		// currentPage(현재 페이지) : 요청 시 전달된 값에서 조회(사용자 요청)
-		int currentPage = Integer.parseInt(request.getParameter("cpage"));
-		
-		PageInfo pi = Pagination.getPageInfo(listCount, currentPage, 10, 5);
-		
-		ArrayList<Board> list = boardServiceImpl.slectList(pi);
-		
-		request.setAttribute("pi", pi);
-		request.setAttribute("list", list);
-		
-		request.getRequestDispatcher("WEB-INF/views/board/boardListView.jsp").forward(request,response);
+		// 1) 조회수 증가
+		int result = bService.increaseCount(boardNo);
+		if(result > 0) {
+			// 2) 상세정보 조회
+			Board b = bService.selectBoard(boardNo);
+			// 3) 댓글목록 조회
+			ArrayList<Reply> list = bService.selectRelplyList(boardNo);
+			
+			request.getRequestDispatcher("WEB-INF/views/board/boardDetailView.jsp").forward(request,response);
+		} else {
+			request.setAttribute("eerorMsg", "게시글 상세 조회 실패");
+			request.getRequestDispatcher("").forward(request, response);
+		}
 	}
 
 	/**
@@ -54,4 +58,5 @@ public class BoardDetailController {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
+
 }
