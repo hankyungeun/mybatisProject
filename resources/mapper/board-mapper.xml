@@ -10,6 +10,13 @@
 		<result column="USER_ID" property="boardWriter" />
 		<result column="COUNT" property="count" />
 		<result column="CREATE_DATE" property="createDate" />
+		<result column="BOARD_CONTENT" property="boardContent" />
+	</resultMap>
+	
+	<resultMap id="replyResultSet" type="com.kh.mybatis.board.model.vo.Reply">
+		<result column="REPLY_CONTENT" property="replyContent" />
+		<result column="USER_ID" property="replyWriter" />
+		<result column="CREATE_DATE" property="createDate" />
 	</resultMap>
 	<!--
 		* resultType : mybatis에서 설정해놓은 별칭을 사용해야 함
@@ -30,5 +37,21 @@
 		WHERE
 			B.STATUS='Y'
 		ORDER BY CREATE_DATE DESC
+	</select>
+	<update id="increaseCount">
+		update board
+			set count = count + 1
+			where board_no = #{boardNo} and status ='Y'
+	</update>
+	<select id="selectBoard" parameterType="_int" resultMap="boardResultSet">
+		SELECT board_no, board_title, board_content, user_id, count, create_date
+		FROM board b join member on (board_writer = user_no)
+		WHERE b.status='Y'
+			and board_no = #{boardNo}
+	</select>
+	<select id="selectReplyList" parameterType="_int" resultMap="replyResultSet">
+		SELECT reply_content, user_id, create_date
+		FROM reply r inner join member on (reply_writer = user_no)
+		WHERE ref_bno = ${refBon} and r.status = 'Y'
 	</select>
 </mapper>

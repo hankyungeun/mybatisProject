@@ -47,16 +47,16 @@ public class BoardServiceImpl implements BoardService{
 	public Board selectBoard(int boardNo) {
 		SqlSession sqlSession = getSqlSession();
 
-		Board b = new Board();
+		Board b = boardDao.selectBoard(sqlSession, boardNo);
 		sqlSession.close();
 		return b;
 	}
 	
 	@Override
 	public ArrayList<Reply> selectRelplyList(int boardNo){
+		// 게시글 정보를 전달받아 댓글 목록 조회
 		SqlSession sqlSession = getSqlSession();
-
-		ArrayList<Reply> replyList= new ArrayList<>();
+		ArrayList<Reply> replyList = boardDao.selectReplyList(sqlSession, boardNo);
 		sqlSession.close();
 		return replyList;
 	}
