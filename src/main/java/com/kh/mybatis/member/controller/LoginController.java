@@ -31,7 +31,6 @@ public class LoginController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// 전달되는 데이터를 뽑아내서 서비스 객체한테 전달, 회원 정보 조회
-		request.setCharacterEncoding("UTF-8");
 		String userId = request.getParameter("userId");
 		String userPwd = request.getParameter("userPwd");
 		Member m = new Member();
