@@ -74,6 +74,13 @@
 				<button type="submit" class="searchButton">검색</button>
 			</form>
 		</div>
+		<c:if test="${ not empty condition }">
+			<script>
+				$(function(){
+					$("#search-area option[value=${condition}]").attr("selected",true);
+				})
+			</script>
+		</c:if>
 		<br>
 		<table id="list-area">
 			<thead>
@@ -106,7 +113,14 @@
 				<a href="list.bo?cpage=${pi.currentPage-1}">[이전]</a>
 			</c:if>
 			<c:forEach var="page" begin="1" end="${pi.maxPage}" >
-				<a href="list.bo?cpage=${page}">${page}</a>
+				<c:choose>
+					<c:when test="${ empty condition }">
+						<a href="list.bo?cpage=${page}">${page}</a>
+					</c:when>
+					<c:otherwise>
+						<a href="search.bo?cpage=${page}&condition=${condition}&keyword=${keyword}">${page}</a>
+					</c:otherwise>
+				</c:choose>
 			</c:forEach>
 			<c:if test="${pi.currentPage == pi.maxPage}">
 				<a>[다음]</a>
