@@ -46,6 +46,7 @@
 	}
 </style>
 </head>
+
 <body>
 	<div class="header">
 		<h1>Welcome to Mybatis World</h1>
